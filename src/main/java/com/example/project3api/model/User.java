@@ -11,13 +11,21 @@ public class User {
     private Long id;
 
     private String name;
+
+    @Column(unique = true)
     private String email;
 
-    public User() {}
+    private String provider;
+    private String providerId;
 
-    public User(String name, String email) {
+    public User() {
+    }
+
+    public User(String name, String email, String provider, String providerId) {
         this.name = name;
         this.email = email;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 
     public Long getId() {
@@ -32,6 +40,14 @@ public class User {
         return email;
     }
 
+    public String getProvider() {
+        return provider;
+    }
+
+    public String getProviderId() {
+        return providerId;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -42,5 +58,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
     }
 }
