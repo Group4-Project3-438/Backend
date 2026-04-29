@@ -5,6 +5,7 @@ import com.example.project3api.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -20,6 +21,14 @@ public class UserService {
     }
 
     public User create(User user) {
+        return repo.save(user);
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return repo.findByEmail(email);
+    }
+
+    public User save(User user) {
         return repo.save(user);
     }
 }
