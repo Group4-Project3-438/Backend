@@ -1,11 +1,12 @@
 package com.example.project3api.config;
 
-import com.example.project3api.service.CustomOAuth2UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.example.project3api.service.CustomOAuth2UserService;
 
 @Configuration
 public class SecurityConfig {
@@ -22,7 +23,14 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/error", "/h2-console/**", "/api/auth/login").permitAll()
+                .requestMatchers(
+                    "/", 
+                    "/error", 
+                    "/h2-console/**", 
+                    "/api/auth/login",
+                    "/oauth2/**",
+                    "/login/**"
+                    ).permitAll()
                 .requestMatchers("/api/auth/me").authenticated()
                 .anyRequest().permitAll()
             )
