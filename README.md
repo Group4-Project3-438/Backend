@@ -55,6 +55,7 @@ Sample POST body:
 - OAuth2 login (Google, GitHub)  
 - User session / token handling  
 - User creation on first login  
+- Auth is managed by this Spring Boot app (`application-oauth2`), not by Supabase Auth
 
 ---
 
@@ -65,11 +66,11 @@ Sample POST body:
   - `SUPABASE_DB_URL`
   - `SUPABASE_DB_USER`
   - `SUPABASE_DB_PASSWORD`
+- Supabase is used for Postgres data storage only in this backend
 
 ### Local env setup
-1. Copy `.env.example` to `.env`
-2. Fill Supabase and OAuth values
-3. Run locally with:
+1. Fill `.env` with Supabase and OAuth values
+2. Run locally with:
    - `./run-local.sh` (auto-loads `.env`)
 
 ---
