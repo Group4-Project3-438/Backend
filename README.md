@@ -70,7 +70,7 @@ Sample POST body:
 1. Copy `.env.example` to `.env`
 2. Fill Supabase and OAuth values
 3. Run locally with:
-   - `./run-local.sh`
+   - `./run-local.sh` (auto-loads `.env`)
 
 ---
 
