@@ -17,7 +17,7 @@ public class ChatRoom {
     private String externalEntityId;
 
     @Lob
-    @Column(columnDefinition = "CLOB")
+    @Column(columnDefinition = "TEXT")
     private String externalEntityPayload;
 
     public Long getId() {
