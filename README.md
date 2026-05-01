@@ -31,6 +31,23 @@ It is responsible for handling business logic, API endpoints, authentication, an
 - Minimum of **8 endpoints**  
 - CRUD operations for core features  
 - User authentication and management routes  
+- Chat room endpoints linked to external entity IDs
+
+### Chat API (new sample)
+- `GET /api/chat/rooms/{entityId}`  
+  Ensures a room exists for `entityId` and pulls payload from:
+  `external.api.base-url + /entities/{entityId}` on first creation.
+- `GET /api/chat/rooms/{entityId}/messages`
+- `POST /api/chat/rooms/{entityId}/messages`
+
+Sample POST body:
+```json
+{
+  "senderId": "user-1",
+  "senderName": "Josh",
+  "text": "Hello from popup chat"
+}
+```
 
 ---
 
@@ -38,12 +55,23 @@ It is responsible for handling business logic, API endpoints, authentication, an
 - OAuth2 login (Google, GitHub)  
 - User session / token handling  
 - User creation on first login  
+- Auth is managed by this Spring Boot app (`application-oauth2`), not by Supabase Auth
 
 ---
 
 ## Database
 - Stores all user and application data  
 - Entity-based structure (tables mapped from Java classes)  
+- Runtime DB is configured for Supabase Postgres via env vars:
+  - `SUPABASE_DB_URL`
+  - `SUPABASE_DB_USER`
+  - `SUPABASE_DB_PASSWORD`
+- Supabase is used for Postgres data storage only in this backend
+
+### Local env setup
+1. Fill `.env` with Supabase and OAuth values
+2. Run locally with:
+   - `./run-local.sh` (auto-loads `.env`)
 
 ---
 
