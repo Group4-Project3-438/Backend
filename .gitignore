@@ -34,7 +34,6 @@ Thumbs.db
 # Environment / local config
 # =========================
 *.env
-!.env
 
 # =========================
 # H2 Database (if file-based later)
