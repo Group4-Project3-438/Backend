@@ -51,8 +51,8 @@ public class AuthController {
             return links;
         }
 
-        links.put("google", "https://backend-api-b6pi.onrender.com/oauth2/authorization/google");
-        links.put("github", "https://backend-api-b6pi.onrender.com/oauth2/authorization/github");
+        links.put("google", "https://cardfetcherapi.onrender.com/oauth2/authorization/google");
+        links.put("github", "https://cardfetcherapi.onrender.com/oauth2/authorization/github");
         return links;
     }
 
