@@ -7,6 +7,7 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
 import java.util.Optional;
@@ -31,15 +32,23 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String email = extractEmail(registrationId, attributes);
         String name = extractName(registrationId, attributes);
         String providerId = extractProviderId(registrationId, attributes);
+        String normalizedEmail = StringUtils.hasText(email) ? email.trim() : null;
+        String normalizedProviderId = StringUtils.hasText(providerId) ? providerId.trim() : null;
 
-        if (email != null) {
-            Optional<User> existingUser = userService.findByEmail(email);
+        if (normalizedEmail != null || normalizedProviderId != null) {
+            Optional<User> existingUser = Optional.empty();
+            if (normalizedEmail != null) {
+                existingUser = userService.findByEmail(normalizedEmail);
+            }
+            if (existingUser.isEmpty() && normalizedProviderId != null) {
+                existingUser = userService.findByProviderAndProviderId(registrationId, normalizedProviderId);
+            }
 
             User user = existingUser.orElseGet(User::new);
-            user.setEmail(email);
+            user.setEmail(normalizedEmail);
             user.setName(name);
             user.setProvider(registrationId);
-            user.setProviderId(providerId);
+            user.setProviderId(normalizedProviderId);
 
             userService.save(user);
         }
