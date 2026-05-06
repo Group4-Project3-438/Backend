@@ -28,6 +28,10 @@ public class UserService {
         return repo.findByEmail(email);
     }
 
+    public Optional<User> findByProviderAndProviderId(String provider, String providerId) {
+        return repo.findByProviderAndProviderId(provider, providerId);
+    }
+
     public User save(User user) {
         return repo.save(user);
     }
