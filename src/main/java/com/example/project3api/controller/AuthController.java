@@ -51,8 +51,8 @@ public class AuthController {
             return links;
         }
 
-        links.put("google", "http://localhost:8081/oauth2/authorization/google");
-        links.put("github", "http://localhost:8081/oauth2/authorization/github");
+        links.put("google", "https://backend-api-b6pi.onrender.com/oauth2/authorization/google");
+        links.put("github", "https://backend-api-b6pi.onrender.com/oauth2/authorization/github");
         return links;
     }
 
