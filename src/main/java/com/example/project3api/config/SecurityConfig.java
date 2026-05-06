@@ -54,7 +54,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/error", "/h2-console/**", "/api/auth/login", "/api/auth/oauth2/start/**", "/api/status/**").permitAll()
                 .requestMatchers("/api/auth/me").authenticated()
-                .requestMatchers("/api/chat/**").authenticated()
+                .requestMatchers("/api/chat/**").permitAll()
                 .anyRequest().permitAll()
             )
             .exceptionHandling(ex -> ex
